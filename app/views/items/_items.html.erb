@@ -22,6 +22,7 @@
                       :item_code => "want-#{item['itemCode']}",
                       :remote => true,
                       :method => :post %>
+
           <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
                       :class => "btn-have btn btn-warning btn-sm have",
                       :item_code => "have-#{item['itemCode']}",
