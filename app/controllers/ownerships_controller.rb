@@ -31,7 +31,6 @@ class OwnershipsController < ApplicationController
     if params[:type] == "Want"
       current_user.want(@item)
     end
-
   end
 
   def destroy
