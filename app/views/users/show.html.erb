@@ -1,3 +1,9 @@
+<% if logged_in? %>
+  <% content_for :head do %>
+    <meta name="description" content="<%= current_user.name %>のモノページ．<%= current_user.name %>の欲しいモノ，持ってるモノを表示しています．"　/>
+    <title><%= @user.name %> - Monolist</title>
+  <% end %>
+<% end %>
 <%= render 'profile' , user: @user %>
 
 <%= render 'items/list' , items: @items %>

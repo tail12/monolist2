@@ -10,10 +10,12 @@ class ItemsController < ApplicationController
       )
       @items = response.first(20)
     end
-    
+
   end
 
   def show
+    @haved_user = @item.have_users
+    @wanted_user = @item.want_users
   end
 
   private

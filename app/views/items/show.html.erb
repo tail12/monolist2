@@ -1,15 +1,28 @@
+<% if logged_in? %>
+  <% content_for :head do %>
+    <meta name="description" content="<%= @item.title %>に関する情報です。この商品を欲しい人、持ってる人を表示しています。
+"　/>
+    <title><%= @item.title %> - Monolist</title>
+  <% end %>
+<% end %>
+
+
 <div class="container">
   <div class="container-inner inner-sm clearfix">
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
           <% #TODO 商品イメージ %>
-          <%= image_tag("no-image.png" , alt: @item.title) %>
+          <% unless @item.present? %>
+            <%= image_tag("no-image.png" , alt: @item.title) %>
+          <% else %>
+            <%= image_tag(@item.large_image, alt: @item.title) %>
+          <% end %>
         </div>
       </div>
       <div class="title">
         <% #TODO 商品タイトル %>
-        
+        <%= @item.title %>
       </div>
       <%= render 'action' , item: @item %>
     </div>
@@ -18,18 +31,23 @@
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Haveしたユーザー一覧 %>
-
+          <% @haved_user.each do |haved_user| %>
+            <%= link_to gravatar_for(haved_user, size: 30), user_path(id: haved_user.id) %>
+          <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Wantしたユーザー一覧 %>
+          <% @wanted_user.each do |wanted_user| %>
+            <%= link_to gravatar_for(wanted_user, size:30), user_path(id: wanted_user.id) %>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
         <% #TODO 正しいリンク先に %>
-        <%= link_to('楽天詳細ページへ', '#') %>
+        <%= link_to '楽天詳細ページへ', @item.detail_page_url, target: "_blank" %>
       </div>
     </div>
   </div>
