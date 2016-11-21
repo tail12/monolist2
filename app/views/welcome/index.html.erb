@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <% content_for :head do %>
     <meta name="description" content="<%= current_user.name %>のモノページ．<%= current_user.name %>の欲しいモノ，持ってるモノを表示しています．"　/>
-    <title><%= @item.title %> - Monolist</title>
+    <title><%= Monolist %></title>
   <% end %>
 <% end %>
 
